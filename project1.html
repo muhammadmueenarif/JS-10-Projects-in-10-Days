@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Name Application</title>
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    background-color: #a9b9c9;
+    font-family: sans-serif;
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text {
+    display: flex;
+}
+
+h2 {
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+#world{
+    color: red;
+}
+
+button {
+    margin-top: 2%;
+    background-color: hotpink;
+    color: whitesmoke;
+    font-weight: bold;
+    width: 8vw;
+    height: 5vh;
+    border: 2px solid honeydew;
+    box-shadow: 0 0 12px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #6c717d;
+    color: #a9b9c9;
+}
+    </style>
+
+</head>
+<body>
+    
+    <!-- This is the first project. it shows Hello world in center of screen. below is button.
+     when button is clicked it prompts to enter name, and then shows name entered by user 
+    in center of screen. -->
+    
+    <div class="main">
+        <div class="text">
+            <h2>Hello</h2>
+        <h2 id="world">World!</h2>
+    </div>
+        <button onclick="changeText()">Click on Me!</button>
+    </div>
+   
+    <script>
+
+    function changeText() {
+    var name = prompt("Enter your name");
+    document.getElementById("world").innerHTML = name + '!';
+}
+
+
+function changeText() {
+    var name = prompt("Enter your name");
+    document.getElementById("world").innerHTML = name + '!';
+}
+
+//we can also do this by queryselector. 
+// const btnElement = document.querySelector('button');
+// const world = document.getElementById('world');
+
+// btnElement.onclick = function () {
+//     const username= prompt("");
+//     world.textContent = username;
+// }
+
+    </script>
+
+</body>
+</html>
