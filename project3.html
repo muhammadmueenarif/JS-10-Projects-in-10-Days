@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #3498db;
+}
+
+.container {
+    width: 95%;
+    height: 89vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+h1, button {
+    margin: 1%;
+    color: white;
+}
+
+button {
+    background-color: rgb(36, 228, 122);
+    font-weight: bold;
+    width: 8vw;
+    height: 7vh;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #27ea60;
+}
+    </style>
+</head>
+
+<body>
+
+            <!-- This project is to generate random number between 10 on the press of button excluding 
+             decimal part -->
+
+    <div class="container">
+        <h1>Random Number Generator</h1>
+        <h1 id="changer">0</h1>
+        <button class="btn" onclick="randomNumber()">Generate</button>
+       </div>
+    
+    <script>
+function randomNumber() {
+    var data = document.getElementById("changer");
+    var random = Math.floor(Math.random()*100);
+    data.innerHTML = random;
+}
+    </script>
+</body>
+</html>

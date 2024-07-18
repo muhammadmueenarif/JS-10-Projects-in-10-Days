@@ -1,7 +1,5 @@
-const switchBtn = document.querySelector('.switch');
-const body = document.body;
-
-switchBtn.addEventListener("click", ()=>{
-    body.classList.toggle("on");
-    //on is the css code that we write in css. we write that code we want to use in this toggle. 
-});
+function randomNumber() {
+    var data = document.getElementById("changer");
+    var random = Math.floor(Math.random()*100);
+    data.innerHTML = random;
+}
