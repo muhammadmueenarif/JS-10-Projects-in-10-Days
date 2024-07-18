@@ -4,11 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Light Bulb On/Off Project</title>
+    
     <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #222;
+}
+body.on {
+    /* on click of button, screen will on */
+    background: radial-gradient(#555, #111);
+}
+
+.wire {
+    position: absolute;
+    left: calc(50%);
+    bottom: 50%;
+    width: 4px;
+    height: 60vh;
+    background: #000;
+    z-index: 1;
+}
+
+.bulb {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    width: 80px;
+    height: 80px;
+}
+
+.bulb i {
+    font-size: 4rem;
+    color: #444;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.switch {
+    position: absolute;
+    top: 60px;
+    right: 100px;
+    width: 40px;
+    height: 40px;
+    background: #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: gray 0px 10px 15px -5px;
+    cursor: pointer;
+}
+
+.switch i {
+    font-size: 1.5rem;
+}
+
+.on .bulb i {
+    color: #ffd700;
+}
+
+.on .switch {
+    background: #4caf50; 
+}
     </style>
 </head>
+
 <body>
+
     
     <!-- a bulb is hanging from above to center of screen. a button is shown at the top right. when
      button is clicked, bulb turns yellow and lights the screen and color of button is green, when 
@@ -17,8 +90,28 @@
         <!-- we need font awesome library in this project.
     seach cdnjs on google and open its font awesome. copy link tag and paste in html file -->
 
-    <script>
+    <div class="light">
+        <div class="wire"></div>
+            <div class="bulb">
+                <i class="fas fa-lightbulb"></i>
+            </div>
         
+        <div class="switch">
+            <i class="fas fa-power-off"></i>
+        </div>
+    </div>
+
+
+
+    <script>
+        const switchBtn = document.querySelector('.switch');
+const body = document.body;
+
+switchBtn.addEventListener("click", ()=>{
+    body.classList.toggle("on");
+    //on is the css code that we write in css. we write that code we want to use in this toggle. 
+});
+
     </script>
 
 </body>
