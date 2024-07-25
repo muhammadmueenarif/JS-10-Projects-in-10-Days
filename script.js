@@ -1,59 +1,43 @@
-//code to generate random password
-const passwordBox = document.getElementById("password");
-const button = document.getElementById("btn");
-const copyButton = document.getElementById("copy");
+//email validation project
+let emailId= document.getElementById("email-id");
+let errorMsg= document.getElementById("error-msg");
+let icon = document.getElementById("icon");
 
-const generatePassword = ()=> {
-    //chars variable will store all the values that need to use in generating random password.
-    const chars = 
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+}{|\/<>=-`~[]";
+function checker() {
+    icon.style.display = "inline-block";
+    let email=emailId.value.trim(); //trim function will remove empty spaces at start & end of email.
     
-    const passwordLength = 8;
-    // if we don't want to use this passwordlength variable then we can directly length in loop
-    // instead of passwordlength variable.
+    if (email === "") {
+        icon.style.display= "none";
+        errorMsg.style.display="none";
+        emailId.style.border= "2px solid #d1d3d4"
+    }
+    else if(validateEmail(email)) {
+        icon.innerHTML= '<i class= "fas fa-check-circle"></i>';
+        icon.style.color= "#2ecc71";
+        errorMsg.style.display= "none";
+        emailId.style.border= "2px solid #2ecc71";
+    } else {
+        icon.innerHTML= '<i class= "fas fa-exclamation-circle"></i>';
+        icon.style.color= "#ff2851";
+        errorMsg.style.display= "block";
+        emailId.style.border= "2px solid #ff2851";
+    }
+}
 
-    let password = " ";
-    for (let i = 0; i < passwordLength; i++) {
-        password += chars.charAt(Math.floor(Math.random() * chars.length));
-        // we used charAt function to print the value present at that index because the math.floor 
-        // function will return the integer value and we need to print the value present at that index.
+function validateEmail(email) {
+    let atIndex= email.indexOf("@"); //this will find index of @.
 
-        // console.log(password);
-        }
-        passwordBox.value = password;
-    };        
-        // now we will add logic to copy the password when we click button. if no password is written, 
-        // then it will show alert message that no password found, please generate a password.
-        // if password is written, then it will copy the password.
-        copyButton.addEventListener("click", () => {
-            const password = passwordBox.value;
-            if (!password) {
-                // we can also write if(password=== " ")
-                alert("No password found, please generate a password");
-                } else {
-                    navigator.clipboard.writeText(password);
-                    alert("Password copied to clipboard");
-                    }
-                })
-button.addEventListener("click", generatePassword);
-                
-
-// we can also do the same project in following way. 
-
-/*    button.addEventListener("click", generatePassword);
-        copyButton.addEventListener("click", ()=>{
-            const passwordCopy = passwordBox.value.trim();
-
-            if (!passwordCopy) {
-                alert("No password to copy! please generate a password");
-                return;
-                } 
-                    navigator.clipboard.writeText(passwordCopy)
-                .then(()=> {
-                    alert("Password copied to clipboard");
-                })   
-                .catch((error)=> {
-                    alert("Error in copying password", error);
-                    })
-            });
-*/
+    let dotIndex = email.lastIndexOf("."); //this will find . which will be at last. 
+    // like kashan.moin@gmail.com. it has 2 dots so it will find last dot. 
+    
+    //atIndex > 0 means that first letter of email will not be @ symbol.
+    //and dotIndex > atIndex+1 means the .symbol should be after the @ symbol.
+    //dotIndex <email.length will verify that there are some words after . symbol. like .com
+    if(atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.length -2) {
+            return true;
+            }
+            else {
+                return false;
+                }
+}

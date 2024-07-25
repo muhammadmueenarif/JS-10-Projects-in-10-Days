@@ -3,9 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Random Password Generator</title>
 
     <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #000, #01356d, #019f55);
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-random-password {
+    margin: 12%;
+    width: 90%;
+    max-width: 700px;
+}
+
+.display {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    background: #fff;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 25px;
+    border-radius: 5px;
+}
+
+.container h1 {
+    font-weight: 500;
+    font-size: 45px;
+}
+
+.container h1 span {
+    color: hotpink;
+    border-bottom: 4px solid hotpink;
+}
+
+.display input {
+    border: 0;
+    outline: 0;
+    font-size: 24px;
+    flex: 1;
+}
+
+button {
+    cursor: pointer;
+}
+
+#btn {
+    border: 0;
+    outline: 0;
+    background: hotpink;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 26px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 
     </style>
 </head>
@@ -14,9 +89,82 @@
 
     <!-- this project is about generating random password. when you click on button, it will generate
      random password everytime. there is symbol in front of it, when you click, it will show prompt
-     password copied to clipboard -->
+     password copied to clipboard, if no password is written, it will show no password to copy, 
+     generate a password first -->
+
+     <div class="container">
+        <div class="container-random-password">
+            <h1>Generate a <br> <span>Random Password</span></h1>
+            <div class="display">
+                <input type="text" id="password" placeholder="password">
+                <i class="fas fa-clipboard" id="copy"></i>
+            </div>
+            <button id="btn">Generate Password</button>
+        </div>         
+    </div>
+     
 
     <script>
+
+        //code to generate random password
+const passwordBox = document.getElementById("password");
+const button = document.getElementById("btn");
+const copyButton = document.getElementById("copy");
+
+const generatePassword = ()=> {
+    //chars variable will store all the values that need to use in generating random password.
+    const chars = 
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+}{|\/<>=-`~[]";
+    
+    const passwordLength = 8;
+    // if we don't want to use this passwordlength variable then we can directly length in loop
+    // instead of passwordlength variable.
+
+    let password = " ";
+    for (let i = 0; i < passwordLength; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+        // we used charAt function to print the value present at that index because the math.floor 
+        // function will return the integer value and we need to print the value present at that index.
+
+        // console.log(password);
+        }
+        passwordBox.value = password;
+    };        
+        // now we will add logic to copy the password when we click button. if no password is written, 
+        // then it will show alert message that no password found, please generate a password.
+        // if password is written, then it will copy the password.
+        copyButton.addEventListener("click", () => {
+            const password = passwordBox.value;
+            if (!password) {
+                // we can also write if(password=== " ")
+                alert("No password found, please generate a password");
+                } else {
+                    navigator.clipboard.writeText(password);
+                    alert("Password copied to clipboard");
+                    }
+                })
+button.addEventListener("click", generatePassword);
+                
+
+// we can also do the same project in following way. 
+
+/*    button.addEventListener("click", generatePassword);
+        copyButton.addEventListener("click", ()=>{
+            const passwordCopy = passwordBox.value.trim();
+
+            if (!passwordCopy) {
+                alert("No password to copy! please generate a password");
+                return;
+                } 
+                    navigator.clipboard.writeText(passwordCopy)
+                .then(()=> {
+                    alert("Password copied to clipboard");
+                })   
+                .catch((error)=> {
+                    alert("Error in copying password", error);
+                    })
+            });
+*/
 
     </script>
 </body>
