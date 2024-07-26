@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide and Show Password</title>
+    
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background: #250057;
+}
+
+.input-box {
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 5px;
+    padding: 10px 30px;
+    margin: 300px auto;
+    display: flex;
+    align-items: center;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    outline: none;
+    font-size: 24px;
+    color: #555;
+}
+
+.input-box i{
+    font-size: 24px;
+    cursor: pointer;
+    color: #ff69b4;
+}
+    </style> <div class="input-box">
+        <input type="password" placeholder="password" id="password">
+        <i class="far fa-eye-slash" id="eyeicon"></i>
+    </div>
+
+</head>
+
+<body>
+    
+    <!-- Methods 01 -->
+    <!-- user will enter password. when it clicks on eye icon, password will hide, and when click
+     again, it will show -->
+     <!-- <input type="password" id="password">
+     <input type="button" value="Show Password" onclick="showPassword()">
+     <input type="button" value="Hide Password" onclick="hidePassword()"> -->
+
+     
+     <!-- <script>
+        function showPassword(){
+            document.getElementById("password").type = "text";
+            }
+            function hidePassword(){
+                document.getElementById("password").type = "password";
+                }
+
+     </script> -->
+
+
+                <!-- method 02. proper -->
+
+                <div class="input-box">
+                    <input type="password" placeholder="password" id="password">
+                    <i class="far fa-eye-slash" id="eyeicon"></i>
+                </div>
+
+
+
+
+
+<script>
+    // password hide and show on the toggle of eye icon. 
+const eyeicon= document.getElementById("eyeicon"); 
+const password = document.getElementById("password");
+
+eyeicon.onclick = function () {
+    if (password.type==="password") {
+        password.type="text";
+        eyeicon.classList.remove("fa-eye-slash");
+        eyeicon.classList.add("fa-eye")
+    }
+    else {
+        password.type="password";
+        eyeicon.classList.remove("fa-eye");
+        eyeicon.classList.add("fa-eye-slash")
+        }
+}
+</script>    
+
+
+</body>
+</html>
