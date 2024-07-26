@@ -1,73 +1,39 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    height: 100vh;
-    background: linear-gradient(135deg, #00b4db, #0083b0);
 }
 
 .container {
-    width: 400px;
-    background-color: #ffffff;
-    padding: 50px 30px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    color: #111111;
-    animation: containerAnimation 2s ease;
+    width: 100%;
+    height: 100vh;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-@keyframes containerAnimation {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -60%);
-    }
-    100%
-    {
-        opacity: 0;
-        transform: translate(-50%, -50%);
-    }
+input {
+    width: 40vw;
+    height: 4vh;
 }
 
-label, input, #error-msg {
-    font-family: sans-serif;
+button {
+    background-color: #007bff;
+    width: 6vw;
+    height: 4vh;
+    color: white;
 }
 
-label {
-    display: inline-block;
-    font-weight: 500;
-    margin-bottom: 10px;
+button:hover {
+    cursor: pointer;
+    opacity: 90%;
 }
 
-input[type="email"] {
-    display: inline-block;
-    border: 2px solid #d1d3d4;
-    width: 88%;
-    height: 50px;
-    border-radius: 5px;
-    outline: none;
-    letter-spacing: 0.5px;
-    font-weight: 400px;
-    padding: 5px;
+#correct {
+    color: green;
 }
 
-#icon {
-    float: right;
-    height: 50px;
-    position: relative;
-    font-size: 25px;
-    padding-top: 10px;
-}
-
-#error-msg {
-    display: none;
-    color: #ff2851;
-    font-size: 14px;
-    margin-top: 10px;
+#false {
+    color: red;
 }

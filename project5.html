@@ -7,6 +7,80 @@
 
     <style>
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #00b4db, #0083b0);
+}
+
+.container {
+    width: 400px;
+    background-color: #ffffff;
+    padding: 50px 30px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #111111;
+    animation: containerAnimation 2s ease;
+}
+
+@keyframes containerAnimation {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    100%
+    {
+        opacity: 0;
+        transform: translate(-50%, -50%);
+    }
+}
+
+label, input, #error-msg {
+    font-family: sans-serif;
+}
+
+label {
+    display: inline-block;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+input[type="email"] {
+    display: inline-block;
+    border: 2px solid #d1d3d4;
+    width: 88%;
+    height: 50px;
+    border-radius: 5px;
+    outline: none;
+    letter-spacing: 0.5px;
+    font-weight: 400px;
+    padding: 5px;
+}
+
+#icon {
+    float: right;
+    height: 50px;
+    position: relative;
+    font-size: 25px;
+    padding-top: 10px;
+}
+
+#error-msg {
+    display: none;
+    color: #ff2851;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
     </style>
 
 </head>
@@ -16,24 +90,61 @@
             <!-- user will enter email. if it is not proper email, then it will show 
              not valid email -->
 
-    <h1>Thank you for your email</h1>
-    <p>Thank you for your email. We will get back to you as soon as possible
-        </p>
+             <div class="container">
+                <label for="email-id">Email Id</label>
+                <input type="email" id="email-id" oninput="checker()">
+                <!-- on input function will be called when any changes in the input occurs -->
+                <div id="icon">
+                </div>
+                <p id="error-msg">Please enter a valid email address</p>
+               </div>
     
+
+
     <script>
-        function validateEmail(email) {
-            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return re.test(String(email).toLowerCase());
+        //email validation project
+let emailId= document.getElementById("email-id");
+let errorMsg= document.getElementById("error-msg");
+let icon = document.getElementById("icon");
+
+function checker() {
+    icon.style.display = "inline-block";
+    let email=emailId.value.trim(); //trim function will remove empty spaces at start & end of email.
+    
+    if (email === "") {
+        icon.style.display= "none";
+        errorMsg.style.display="none";
+        emailId.style.border= "2px solid #d1d3d4"
+    }
+    else if(validateEmail(email)) {
+        icon.innerHTML= '<i class= "fas fa-check-circle"></i>';
+        icon.style.color= "#2ecc71";
+        errorMsg.style.display= "none";
+        emailId.style.border= "2px solid #2ecc71";
+    } else {
+        icon.innerHTML= '<i class= "fas fa-exclamation-circle"></i>';
+        icon.style.color= "#ff2851";
+        errorMsg.style.display= "block";
+        emailId.style.border= "2px solid #ff2851";
+    }
+}
+
+function validateEmail(email) {
+    let atIndex= email.indexOf("@"); //this will find index of @.
+
+    let dotIndex = email.lastIndexOf("."); //this will find . which will be at last. 
+    // like kashan.moin@gmail.com. it has 2 dots so it will find last dot. 
+    
+    //atIndex > 0 means that first letter of email will not be @ symbol.
+    //and dotIndex > atIndex+1 means the .symbol should be after the @ symbol.
+    //dotIndex <email.length will verify that there are some words after . symbol. like .com
+    if(atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.length -2) {
+            return true;
+            }
+            else {
+                return false;
                 }
-                function validateForm() {
-                    var x = document.forms["myForm"]["email"].value;
-                    if (validateEmail(x)) {
-                        alert("Valid email address!");
-                        } else {
-                            alert("Not a valid email address!");
-                            return false;
-                            }
-                        }
+}
     </script>
 </body>
 </html>

@@ -1,43 +1,71 @@
-//email validation project
-let emailId= document.getElementById("email-id");
-let errorMsg= document.getElementById("error-msg");
-let icon = document.getElementById("icon");
+// code to check if it given number is prime number or not.
 
-function checker() {
-    icon.style.display = "inline-block";
-    let email=emailId.value.trim(); //trim function will remove empty spaces at start & end of email.
+
+// function numberChecker() {
+//     var number = document.getElementById("userinput").value;
+//      number = parseInt(number);
     
-    if (email === "") {
-        icon.style.display= "none";
-        errorMsg.style.display="none";
-        emailId.style.border= "2px solid #d1d3d4"
+//      if (isNaN(number)) {
+//         document.getElementById("message").innerText= `please enter a number`;
+//         document.getElementById("message").style.color = "red";
+//         return;
+//      }
+//      else if(number<=1) {
+//         document.getElementById("message").innerText= `${number} is not a prime number`;
+//         document.getElementById("message").style.color="red";
+//         return;    
+//      }
+//      else if (number >1 && number<=3) {
+//         document.getElementById("message").innerText= `${number} is a prime number`;
+//         document.getElementById("message").style.color="green";
+//         return;
+
+//     } else if(number % 2===0 || number % 3===0) {
+//             document.getElementById("message").innerText= `${number} is not a prime number`;
+//             document.getElementById("message").style.color="red";
+//             return;   
+//     }
+//     else{
+//     }
+    
+// }
+
+
+
+
+
+
+
+
+// Function to check if a number is prime
+function isPrime(number) {
+    if (number <= 1) {
+        return false;
     }
-    else if(validateEmail(email)) {
-        icon.innerHTML= '<i class= "fas fa-check-circle"></i>';
-        icon.style.color= "#2ecc71";
-        errorMsg.style.display= "none";
-        emailId.style.border= "2px solid #2ecc71";
-    } else {
-        icon.innerHTML= '<i class= "fas fa-exclamation-circle"></i>';
-        icon.style.color= "#ff2851";
-        errorMsg.style.display= "block";
-        emailId.style.border= "2px solid #ff2851";
+    for (let i = 2, sqrt = Math.sqrt(number); i <= sqrt; i++) {
+        if (number % i === 0) {
+            return false;
+        }
     }
+    return true;
 }
 
-function validateEmail(email) {
-    let atIndex= email.indexOf("@"); //this will find index of @.
+// Function to check user input and display result
+function numberChecker() {
+    var number = document.getElementById("userinput").value;
+    number = parseInt(number);
 
-    let dotIndex = email.lastIndexOf("."); //this will find . which will be at last. 
-    // like kashan.moin@gmail.com. it has 2 dots so it will find last dot. 
-    
-    //atIndex > 0 means that first letter of email will not be @ symbol.
-    //and dotIndex > atIndex+1 means the .symbol should be after the @ symbol.
-    //dotIndex <email.length will verify that there are some words after . symbol. like .com
-    if(atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.length -2) {
-            return true;
-            }
-            else {
-                return false;
-                }
+    if (isNaN(number)) {
+        document.getElementById("message").innerText = `Please enter a number`;
+        document.getElementById("message").style.color = "red";
+        return;
+    }
+
+    if (isPrime(number)) {
+        document.getElementById("message").innerText = `${number} is a prime number`;
+        document.getElementById("message").style.color = "green";
+    } else {
+        document.getElementById("message").innerText = `${number} is not a prime number`;
+        document.getElementById("message").style.color = "red";
+    }
 }
