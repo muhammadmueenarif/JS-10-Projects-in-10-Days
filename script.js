@@ -1,26 +1,26 @@
-// palindrome checker
+// code to get input from user and display unicode of the character 
 
-//function to check if given string is palindrome or not.
-function isPalindrome(str) {
-    const Cleanstr = str.toLowerCase().replace(/[^a-z0-9]/g, ''); //if special characters are entered, 
-    //they will be replaced. 
 
-    const reversedstr = Cleanstr.split('').reverse().join(''); //split the string into an
-    //array of characters, reverse the array and join the characters back into a string.
-    return Cleanstr === reversedstr; //return true if the string is equal to its reverse,
-}
+function detectChar() {
+    var input = document.getElementById("inputType").value;
+    if (input) {
+        const unicodeValue = input.charCodeAt(0);
+        const result = `The unicode of "${input}" is ${unicodeValue}`;
+        document.getElementById("result").textContent = result;
+        document.getElementById("inputType").value=""; // it will clear input after each result.
 
-function palindromeChecker() {
-    const inputText = document.getElementById("inputText");
-    const result = document.getElementById("result");
-    if (isPalindrome(inputText.value)) {
-        result.textContent = `"${inputText.value}" is a palindrome`;
     } else {
-        result.textContent = `"${inputText.value}" is not a palindrome`;
+        document.getElementById("result").textContent = 'Please Enter a Character';
     }
-    result.classList.add('fadeIn');
-    inputText.value = ""; // it will clear the input field after checking so we can enter new text.
+
 }
 
-document.getElementById("checkButton").addEventListener("click", palindromeChecker);
 
+
+
+// another way we can use.
+// function Detector() {
+//     var userText = document.getElementById("inputText").value;
+//     var unicode = userText.charCodeAt();  
+//     document.getElementById("result").innerHTML = "unicode of the character is " + unicode;
+// }

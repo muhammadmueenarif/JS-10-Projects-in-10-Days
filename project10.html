@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Unicode Character</title>
+
+    <style>
+        body {
+    font-family: sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ff4081;
+}
+
+input[type="text"]:focus {
+    border-color: #d85f83;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ff4081;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #f50057;
+}
+
+#result {
+    font-size: 18px;
+    margin-top: 20px;
+}
+    </style>
+    
+</head>
+
+<body>
+    
+    <div class="container">
+        <h2> Get Unicode Character Value</h2>
+        <input type="text" id="inputType" value="a" maxlength="1" placeholder="Enter a character">
+        <button onclick="detectChar()">Detect</button>
+        <p id="result"></p>
+       </div>
+
+
+    <script>
+
+        // code to get input from user and display unicode of the character 
+
+
+function detectChar() {
+    var input = document.getElementById("inputType").value;
+    if (input) {
+        const unicodeValue = input.charCodeAt(0);
+        const result = `The unicode of "${input}" is ${unicodeValue}`;
+        document.getElementById("result").textContent = result;
+        document.getElementById("inputType").value=""; // it will clear input after each result.
+
+    } else {
+        document.getElementById("result").textContent = 'Please Enter a Character';
+    }
+
+}
+
+
+
+
+// another way we can use.
+// function Detector() {
+//     var userText = document.getElementById("inputText").value;
+//     var unicode = userText.charCodeAt();  
+//     document.getElementById("result").innerHTML = "unicode of the character is " + unicode;
+// }
+    
+    </script>
+
+</body>
+</html>
